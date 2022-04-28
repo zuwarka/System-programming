@@ -1,0 +1,30 @@
+BEGIN{string=0;symbol=0;word=0}
+{
+if (FILENAME!=file && string!=0)
+{
+print "\nFILE -", FILENAME, "Symbols -", symbol, "Words -", word,"Strings - ", string,"\n"
+string=0
+symbol=0
+word=0
+filecount+=1
+}
+for(i=1;i<=NF;i++)
+{
+if($i ~/h/)
+{
+printf “9 “
+}
+else
+{
+printf $i “ “
+}
+}
+print “”
+
+symbol+=length($0) 
+string+=1
+word+=NF
+file=FILENAME
+}
+END {print "\nFILE -", FILENAME, "Symbols -", symbol, "Words -", word,"Sting", string
+print "ALL FILES - "filecount+1}
